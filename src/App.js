@@ -1,7 +1,11 @@
 
 import './App.css';
+import { useState } from 'react';
 
 function App() {
+
+  const[toDos,setTodos]=useState([])
+  const[toDo,setTodo]=useState('')
   return (
     <div className="app">
     <div className="mainHeading">
@@ -12,22 +16,25 @@ function App() {
       <h2>Whoop, it's Wednesday 🌝 ☕ </h2>
     </div>
     <div className="input">
-      <input type="text" placeholder="🖊️ Add item..." />
-      <i className="fas fa-plus"></i>
+      <input value={toDo} onChange={(e)=>setTodo(e.target.value)} type="text" placeholder="🖊️ Add item..." />
+      <i onClick={()=>setTodos([...toDos,toDo])} className="fas fa-plus"></i>
     </div>
     <div className="todos">
+      { toDos.map((value)=>{
+        
+     return(
       <div className="todo">
         <div className="left">
           <input type="checkbox" name="" id="" />
-          <p>Rect tutorial</p>
+          <p>{value}</p>
         </div>
         <div className="right">
           <i className="fas fa-times"></i>
         </div>
-      </div>
+      </div> )})}
     </div>
   </div>
   );
-}
+     }
 
 export default App;
